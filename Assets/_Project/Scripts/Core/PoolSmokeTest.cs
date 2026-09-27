@@ -8,7 +8,6 @@ namespace AntLion.Core
     {
         [SerializeField] private ProjectilePool pool;
         [SerializeField] private Health target;
-        [SerializeField] private int bossProjectileLayer = 6;
 
         private Projectile shot;
         private float t;
@@ -22,7 +21,7 @@ namespace AntLion.Core
             Vector2 targetPos = target.transform.position;
             Vector2 start = targetPos + Vector2.up * 1.5f;
             shot = pool.Get();
-            shot.Launch(start, (targetPos - start).normalized, bossProjectileLayer);
+            shot.Launch(start, (targetPos - start).normalized);
             Debug.Log($"[SmokeTest] launched from {start} toward {targetPos}");
         }
 

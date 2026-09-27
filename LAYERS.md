@@ -27,6 +27,8 @@ Skip this if you already know Unity.
 
 **Prefab.** A saved GameObject with all its components and settings, stored as a file. Drop it into a scene to get a copy ("instance"). Edit the prefab and every copy updates. Our prefabs: `Player`, `Boss`, `Projectile`, `PowerUpPickup`, `HealthBar`.
 
+**Prefab variant.** A prefab based on another prefab. It inherits everything from its parent and overrides only what differs; change the parent and the variant follows, except where it overrides. Ours: `Projectile_Player` and `Projectile_Boss`, both variants of `Projectile`.
+
 **Scene.** A saved arrangement of GameObjects. Ours: `MainMenu`, `Arena`, `WinScreen`, `LoseScreen`, plus `Sandbox_A` / `Sandbox_B` for testing.
 
 **Inspector.** The panel showing a selected object's components and their settings.
@@ -260,11 +262,11 @@ BossController.firePoint  →  FirePoint
 
 **A prefab cannot reference something that only exists in a scene.** The prefab is a file on disk; the scene object is not part of it. So anything pointing from a prefab instance to a scene object must be set on the *instance*, in the scene.
 
-Wired in `Arena.unity` (and in both sandbox scenes):
+Wired in `Arena.unity` (and in both sandbox scenes). The scenes currently have a single `ProjectilePool`; this is the target once each has one pool per bullet variant:
 ```
-Player (instance) → PlayerShooter.pool      →  Systems/ProjectilePool
+Player (instance) → PlayerShooter.pool      →  the pool holding Projectile_Player
 Boss   (instance) → BossController.player   →  Player
-Boss   (instance) → BossController.pool     →  Systems/ProjectilePool
+Boss   (instance) → BossController.pool     →  the pool holding Projectile_Boss
 HUD/…HealthBar.health                       →  the Player's / Boss's Health
 GameStateManager.playerHealth / .bossHealth →  the two Health components
 ```
@@ -339,8 +341,9 @@ Keyboard
 Mouse held
   → PlayerController                     reads the "Attack" action        [controller]
   → PlayerShooter.Fire(direction)                                         [system]
-  → ProjectilePool.Get()                 takes a recycled, hidden bullet  [system]
-  → Projectile.Launch(position, direction, PlayerProjectile layer)        [system]
+  → ProjectilePool.Get()                 takes a recycled, hidden         [system]
+                                         Projectile_Player from the player's pool
+  → Projectile.Launch(position, direction)                                [system]
   → Projectile.FixedUpdate()             asks its ProjectileMotion asset  [data]
                                          how fast to move, then moves
   → after `lifetime` seconds it returns itself to the pool
@@ -360,7 +363,7 @@ Projectile.OnTriggerEnter2D(other)                                        [syste
   → the bullet returns itself to the pool
 ```
 
-Note what the bullet does *not* do: it does not check whether it hit the player or the boss. The physics layers do that. Player bullets are on `PlayerProjectile`, which the collision matrix only lets touch `Boss`. One prefab, both sides, no branching code.
+Note what the bullet does *not* do: it does not check whether it hit the player or the boss. The physics layers do that. Player bullets are `Projectile_Player`, a variant set to the `PlayerProjectile` layer, which the collision matrix only lets touch `Boss`. Boss bullets are `Projectile_Boss` on `BossProjectile`. Each side has its own pool, so a bullet's layer is fixed by which pool it came from and no code ever sets it. One script, two variants, no branching code.
 
 ---
 
@@ -368,7 +371,7 @@ Note what the bullet does *not* do: it does not check whether it hit the player 
 
 **Add a new boss attack**
 1. Create `Scripts/Boss/Patterns/MyPattern.cs`, subclassing `AttackPattern`.
-2. Implement `Execute(AttackContext)`: get bullets from `context.Pool`, launch them from `context.FirePoint`, `yield return new WaitForSeconds(...)` between shots.
+2. Implement `Execute(AttackContext)`: get bullets from `context.Pool` (the boss's pool, already on the right layer), launch them from `context.FirePoint`, `yield return new WaitForSeconds(...)` between shots.
 3. Add `[CreateAssetMenu(menuName = "AntLion/Attack Patterns/My Pattern", fileName = "Pattern_MyPattern")]`.
 4. In the Project window: **Create > AntLion > Attack Patterns > My Pattern**, save it in `Data/AttackPatterns/`.
 5. Drag the asset into the Boss's `BossAttack.patterns` list.

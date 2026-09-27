@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace AntLion.Projectiles
 {
-    // The one bullet used by both sides. Which side fired it is decided by the layer set in Launch(),
-    // and the collision matrix decides what that layer can hit, so there is no player/boss bullet class.
+    // The one bullet used by both sides. Each side fires a prefab variant (Projectile_Player / Projectile_Boss)
+    // from its own pool; the variant carries its layer, and the collision matrix decides what that layer can hit,
+    // so there is no player/boss bullet class.
     [RequireComponent(typeof(Rigidbody2D))]
     public class Projectile : MonoBehaviour
     {
@@ -35,13 +36,12 @@ namespace AntLion.Projectiles
             pool = owner;
         }
 
-        // Places, aims and arms the projectile. layer is PlayerProjectile or BossProjectile.
-        public void Launch(Vector2 position, Vector2 direction, int layer)
+        // Places, aims and arms the projectile. Its layer comes from the prefab variant, not the caller.
+        public void Launch(Vector2 position, Vector2 direction)
         {
             transform.position = position;
             body.position = position; // keep physics in step with the teleport, so it can't hit anything on the way
             this.direction = direction.normalized;
-            gameObject.layer = layer;
             age = 0f;
             returned = false;
         }

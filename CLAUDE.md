@@ -41,7 +41,7 @@ Four layers. Keep them separate.
 - **`Health` is one shared component.** Player and boss both use it. It exposes `OnChanged(current, max)` and `OnDeath`. Nothing that listens should need to know which entity it belongs to. It must sit on the same GameObject as the entity's collider, because `Projectile` looks it up from whatever it hits. Damage is ignored while `IsInvulnerable` is set; the caller (dash, shield) owns the timing.
 - **Attack patterns are ScriptableObjects** subclassing `AttackPattern`, one class per pattern, tunable fields exposed in the Inspector. The boss holds a list of them plus a selector. Difficulty tuning must not require code changes.
 - **Projectiles are pooled.** `ProjectilePool` with `Get()`/`Return()`. Never `Instantiate`/`Destroy` a bullet at runtime — the patterns get dense enough that it will stutter.
-- **One `Projectile` prefab**, carrying speed, damage, and a movement strategy. Player and boss bullets are distinguished by layer, and the collision matrix decides what can hit what. Do not write separate player/boss bullet classes.
+- **One `Projectile` prefab**, carrying speed, damage, and a movement strategy. Player and boss bullets are two prefab variants of it, `Projectile_Player` and `Projectile_Boss`, each with its own `ProjectilePool`. Each variant carries its own layer and tuning; the collision matrix decides what can hit what. Do not write separate player/boss bullet classes.
 - **Power-ups are `PowerUpEffect` ScriptableObjects** applied by a single `PowerUpPickup` prefab. Adding a power-up means authoring an asset, not editing a spawner.
 - **`GameStateManager`** tracks Playing / Win / Lose, listens to both `OnDeath` events, and drives transitions. Keep it small.
 
@@ -57,7 +57,7 @@ Two unrelated systems — don't mix them up.
 
 - **Sorting Layers** (SpriteRenderer → Sorting Layer) decide draw order, back to front: `Default`, `Background`, `Ground`, `Characters`, `Projectiles`. New sprites start on `Default`, which is *behind* the floor — always set one. Floor → `Background`, shadows → `Ground`, player/boss/pickups → `Characters`, bullets → `Projectiles`.
 - **Physics Layers** (the Layer dropdown at the top of the Inspector) decide collisions: `Player`, `Boss`, `PlayerProjectile`, `BossProjectile`, `ArenaBounds`, `CameraBounds`, `PowerUp`. Only objects with a collider need one; sprite-only children stay on `Default`.
-- Collision matrix: Player ↔ ArenaBounds, Boss, BossProjectile, PowerUp. Boss ↔ PlayerProjectile, ArenaBounds. Everything else is off. The shooter sets a projectile's layer when it fires.
+- Collision matrix: Player ↔ ArenaBounds, Boss, BossProjectile, PowerUp. Boss ↔ PlayerProjectile, ArenaBounds. Everything else is off. A projectile's layer is set on its prefab variant, never in code.
 - The Global Light 2D must target every sorting layer. A sorting layer it doesn't target renders black.
 
 ## Conventions

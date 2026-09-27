@@ -45,8 +45,8 @@ Much of this is still stubs. Section 3 says what actually runs today.
 Input System ("Move", later "Attack")
    → PlayerController.Update()
         → PlayerMovement.SetDirection()      → FixedUpdate sets Rigidbody2D velocity
-        → PlayerShooter.Fire(direction)      → ProjectilePool.Get()
-                                             → Projectile.Launch()  (layer = PlayerProjectile)
+        → PlayerShooter.Fire(direction)      → player ProjectilePool.Get()  (Projectile_Player)
+                                             → Projectile.Launch(position, direction)
 ```
 
 **Boss side**
@@ -54,7 +54,7 @@ Input System ("Move", later "Attack")
 BossController builds an AttackContext { FirePoint, Player, Pool }
    → BossAttack asks PatternSelector.Next(patterns)
         → AttackPattern.Execute(context)  (coroutine)
-             → Pool.Get() → Projectile.Launch()  (layer = BossProjectile)
+             → boss Pool.Get() (Projectile_Boss) → Projectile.Launch(position, direction)
 ```
 
 **Hits, health and game state**
@@ -111,8 +111,8 @@ Methods that return a value and aren't written yet throw `NotImplementedExceptio
 ### Projectiles (`AntLion.Projectiles`)
 | Script | Status | Contents |
 |---|---|---|
-| `Projectile` | 🟡 | `speed` (10), `damage` (1), `lifetime` (3), `motion`; read-only properties for each; `Launch(Vector2 direction)` |
-| `ProjectilePool` | 🟡 | `prefab`, `prewarmCount` (200); `Get()` throws; `Return(Projectile)` |
+| `Projectile` | ✅ | `speed` (10), `damage` (1), `lifetime` (3), `motion`; read-only properties for each; `Launch(Vector2 position, Vector2 direction)`. Its layer comes from the prefab variant, not from the caller. Damages any `Health` it touches, then returns to the pool on hit or after `lifetime`. |
+| `ProjectilePool` | ✅ | `prefab`, `prewarmCount` (200); prewarms on `Awake`; `Get()`, `Return(Projectile)`. One pool per variant. |
 | `ProjectileMotion` | ✅ (abstract) | `abstract Vector2 GetVelocity(direction, speed, age)` |
 | `StraightMotion` | ✅ | returns `direction * speed` |
 
@@ -155,11 +155,18 @@ Boss     Rigidbody2D (Kinematic, Full Kinematic Contacts, Interpolate)
 Wired inside the prefab: Controller → Health, Attack, FirePoint
 ```
 
-**Projectile** (`Prefabs/Projectiles/Projectile.prefab`): physics layer `BossProjectile` by default. The shooter will change the layer when it fires.
+**Projectile** (`Prefabs/Projectiles/Projectile.prefab`): the base prefab, physics layer `BossProjectile`. Pools should use one of its two variants, not the base.
 ```
 Projectile  Rigidbody2D (Kinematic) · CircleCollider2D trigger r 0.09 · Projectile
 └── Visual  0.25 magenta circle, sorting Projectiles (magenta is reserved for bullets)
 ```
+
+**Projectile variants** (same folder), each fired from its own `ProjectilePool`:
+```
+Projectile_Player   layer PlayerProjectile   (fired by PlayerShooter)
+Projectile_Boss     layer BossProjectile     (fired by boss patterns)
+```
+Both override only the layer so far. Give player and boss bullets different speed, damage, lifetime or look by overriding them on the variant.
 
 **PowerUpPickup** (`Prefabs/PowerUps/PowerUpPickup.prefab`): physics layer `PowerUp`
 ```
@@ -192,14 +199,14 @@ Arena              (scale 1)
 Player             at (1.04, -3.46), 4 units below the boss
 Boss               at (1.04, 0.54), the arena center
 Systems            SceneLoader · GameStateManager (→ both Healths, SceneLoader)
-├── ProjectilePool (→ Projectile prefab)
+├── ProjectilePool (→ base Projectile prefab; to be replaced by one pool per variant)
 └── PowerUpSpawner (→ PowerUpPickup prefab)
 HUD                Screen-space canvas, 1920×1080 reference
 ├── BossHealthBar    top center, 800 wide, → Boss Health
 └── PlayerHealthBar  bottom left, → Player Health
 ```
 
-**References set only in the scene** (prefabs can't point at scene objects): `Player.PlayerShooter.pool`, `Boss.BossController.player` and `Boss.BossController.pool`.
+**References set only in the scene** (prefabs can't point at scene objects): `Player.PlayerShooter.pool` (→ the `Projectile_Player` pool), `Boss.BossController.player` and `Boss.BossController.pool` (→ the `Projectile_Boss` pool).
 
 **MainMenu.unity:** a `MainMenu` canvas with SceneLoader and MainMenuScreen, which references both. It has a hidden `InstructionsPanel` child (80% black overlay) and an EventSystem using the Input System UI module.
 
@@ -256,7 +263,7 @@ Each of those three also still has its default camera and light.
 **By build step**
 | Step | Status |
 |---|---|
-| 1. Movement, shooting, pooled projectile | Movement ✅. Pool, Projectile and Shooter are stubs. |
+| 1. Movement, shooting, pooled projectile | Movement, Pool and Projectile ✅, with player/boss prefab variants. Shooter is a stub; scenes still need one pool per variant. |
 | 2. Health and HP bars | Components and bars are in place and wired; the logic is empty. |
 | 3. Boss with one hardcoded pattern, then playtest | BossController and BossAttack are empty. |
 | 4. Patterns as ScriptableObjects | The base class and 3 stubs exist. |
