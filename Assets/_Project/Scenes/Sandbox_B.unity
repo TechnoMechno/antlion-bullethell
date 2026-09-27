@@ -461,6 +461,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1462183132}
   - {fileID: 603258574}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -475,7 +476,7 @@ GameObject:
   - component: {fileID: 603258574}
   - component: {fileID: 603258573}
   m_Layer: 0
-  m_Name: ProjectilePool
+  m_Name: BossProjectilePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4297f27e84c47474eacd0753b44d354e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AntLion.Projectiles.ProjectilePool
-  prefab: {fileID: 8411986218210174035, guid: 0abc7259119ab4a8c89640bdec20bfd1, type: 3}
+  prefab: {fileID: 8206540636769004878, guid: d8438012dc0cf4542865b1c86b4f9b09, type: 3}
   prewarmCount: 200
 --- !u!4 &603258574
 Transform:
@@ -712,6 +713,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba800121acf6b409e9d0a6c33aefc33b, type: 3}
+--- !u!1 &1462183131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1462183132}
+  - component: {fileID: 1462183133}
+  m_Layer: 0
+  m_Name: PlayerProjectilePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1462183132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462183131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 436651832}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1462183133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462183131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4297f27e84c47474eacd0753b44d354e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Projectiles.ProjectilePool
+  prefab: {fileID: 5842254597024958900, guid: 9ff0ea15aeddd4191ba2c2b9e914544a, type: 3}
+  prewarmCount: 200
 --- !u!1001 &1929081002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -723,7 +770,7 @@ PrefabInstance:
     - target: {fileID: -5311722764773348220, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
       propertyPath: pool
       value: 
-      objectReference: {fileID: 603258573}
+      objectReference: {fileID: 1462183133}
     - target: {fileID: 4893384045870605467, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
       propertyPath: m_Name
       value: Player

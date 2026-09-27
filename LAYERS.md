@@ -262,11 +262,11 @@ BossController.firePoint  →  FirePoint
 
 **A prefab cannot reference something that only exists in a scene.** The prefab is a file on disk; the scene object is not part of it. So anything pointing from a prefab instance to a scene object must be set on the *instance*, in the scene.
 
-Wired in `Arena.unity` (and in both sandbox scenes). The scenes currently have a single `ProjectilePool`; this is the target once each has one pool per bullet variant:
+Wired in `Arena.unity` (and in both sandbox scenes):
 ```
-Player (instance) → PlayerShooter.pool      →  the pool holding Projectile_Player
+Player (instance) → PlayerShooter.pool      →  Systems/PlayerProjectilePool  (Projectile_Player)
 Boss   (instance) → BossController.player   →  Player
-Boss   (instance) → BossController.pool     →  the pool holding Projectile_Boss
+Boss   (instance) → BossController.pool     →  Systems/BossProjectilePool    (Projectile_Boss)
 HUD/…HealthBar.health                       →  the Player's / Boss's Health
 GameStateManager.playerHealth / .bossHealth →  the two Health components
 ```

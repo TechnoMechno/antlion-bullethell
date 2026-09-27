@@ -199,7 +199,8 @@ Arena              (scale 1)
 Player             at (1.04, -3.46), 4 units below the boss
 Boss               at (1.04, 0.54), the arena center
 Systems            SceneLoader · GameStateManager (→ both Healths, SceneLoader)
-├── ProjectilePool (→ base Projectile prefab; to be replaced by one pool per variant)
+├── PlayerProjectilePool (→ Projectile_Player, prewarm 200)
+├── BossProjectilePool   (→ Projectile_Boss, prewarm 200)
 └── PowerUpSpawner (→ PowerUpPickup prefab)
 HUD                Screen-space canvas, 1920×1080 reference
 ├── BossHealthBar    top center, 800 wide, → Boss Health
@@ -263,7 +264,7 @@ Each of those three also still has its default camera and light.
 **By build step**
 | Step | Status |
 |---|---|
-| 1. Movement, shooting, pooled projectile | Movement, Pool and Projectile ✅, with player/boss prefab variants. Shooter is a stub; scenes still need one pool per variant. |
+| 1. Movement, shooting, pooled projectile | Movement, Pool and Projectile ✅, with player/boss prefab variants. Each scene has one pool per variant. Shooter is a stub. |
 | 2. Health and HP bars | Components and bars are in place and wired; the logic is empty. |
 | 3. Boss with one hardcoded pattern, then playtest | BossController and BossAttack are empty. |
 | 4. Patterns as ScriptableObjects | The base class and 3 stubs exist. |
