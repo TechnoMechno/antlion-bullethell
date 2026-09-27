@@ -126,7 +126,7 @@ Methods that return a value and aren't written yet throw `NotImplementedExceptio
 ### UI (`AntLion.UI`)
 | Script | Status | Contents |
 |---|---|---|
-| `HealthBar` | ⬜ | refs `health`, `fill` (Image). Works for any Health. |
+| `HealthBar` | ✅ | refs `health`, `fill` (Image). Works for any Health. Sets `fill.fillAmount` from `OnChanged`; redraws on enable so a hidden bar isn't stale when shown again. |
 | `MainMenuScreen` | 🟡 | refs `sceneLoader`, `instructions`; `Play()`, `ShowInstructions()`, `Quit()` |
 | `InstructionsPanel` | 🟡 | `Show()`, `Hide()` |
 | `ResultScreen` | 🟡 | ref `sceneLoader`; `Retry()`, `BackToMenu()` |
@@ -265,7 +265,7 @@ Each of those three also still has its default camera and light.
 | Step | Status |
 |---|---|
 | 1. Movement, shooting, pooled projectile | Movement, Pool and Projectile ✅, with player/boss prefab variants. Each scene has one pool per variant. Shooter is a stub. |
-| 2. Health and HP bars | Components and bars are in place and wired; the logic is empty. |
+| 2. Health and HP bars | ✅ `Health` and both HP bars work and are wired in `Arena`. |
 | 3. Boss with one hardcoded pattern, then playtest | BossController and BossAttack are empty. |
 | 4. Patterns as ScriptableObjects | The base class and 3 stubs exist. |
 | 5. Power-ups | The base classes, pickup prefab and spawner exist. |
