@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6929266fe0f0f4349920e1ccb09ef92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 10
+  maxHealth: 200
 --- !u!114 &3884450912346290370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
   reverseChance: 0.3
   reversePause: 0.4
   edgeMargin: 0.9
-  recoverTime: 1.2
+  recoverTime: 0.96
   logStateChanges: 0
 --- !u!1 &8850769589401333633
 GameObject:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pattern_AimedShot
   m_EditorClassIdentifier: Assembly-CSharp::AntLion.Boss.Patterns.AimedSpreadPattern
   windup: 0.4
-  volleys: 4
+  volleys: 10
   bulletsPerVolley: 1
   spreadAngle: 0
-  timeBetweenVolleys: 0.35
+  timeBetweenVolleys: 0.2
