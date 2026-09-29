@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2960091941804447723}
   - component: {fileID: 5736110521901783473}
   - component: {fileID: 3904050028108633049}
+  - component: {fileID: 8296898797859452378}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -54,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   movement: {fileID: 2960091941804447723}
   shooter: {fileID: -5311722764773348220}
+  dash: {fileID: 8296898797859452378}
 --- !u!114 &-5311722764773348220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 5
+  facingDirection: {x: 0, y: 0}
 --- !u!50 &5736110521901783473
 Rigidbody2D:
   serializedVersion: 5
@@ -157,6 +160,23 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.33
+--- !u!114 &8296898797859452378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893384045870605467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c74568277a583a4ea8c57f7ee584b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Player.PlayerDash
+  movement: {fileID: 2960091941804447723}
+  health: {fileID: 4876164035335547063}
+  dashSpeed: 10
+  dashDuration: 0.15
+  cooldown: 0.6
 --- !u!1 &6926852707445235499
 GameObject:
   m_ObjectHideFlags: 0
