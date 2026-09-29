@@ -58,7 +58,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalScale: {x: 1.75, y: 1.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4445333754372885289}
@@ -137,6 +137,8 @@ GameObject:
   - component: {fileID: 7078534167827888339}
   - component: {fileID: 5970359887196884780}
   - component: {fileID: 7145001337436505674}
+  - component: {fileID: 3884450912346290370}
+  - component: {fileID: 1387553633828550836}
   m_Layer: 11
   m_Name: Boss
   m_TagString: Untagged
@@ -224,7 +226,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.1
+  m_Radius: 0.77
 --- !u!114 &7078534167827888339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,10 +240,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AntLion.Boss.BossController
   health: {fileID: 7145001337436505674}
+  brain: {fileID: 1387553633828550836}
   attack: {fileID: 5970359887196884780}
   firePoint: {fileID: 2589615275443542769}
   player: {fileID: 0}
   pool: {fileID: 0}
+  arena: {fileID: 0}
 --- !u!114 &5970359887196884780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e1a87f8c9d74d179956da815dd4a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AntLion.Boss.BossAttack
-  patterns: []
 --- !u!114 &7145001337436505674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +271,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 10
+--- !u!114 &3884450912346290370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255192250970716449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f217b5a74d1194d5aa71c017abae5cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Boss.BossMovement
+--- !u!114 &1387553633828550836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255192250970716449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b331b75d9fc44199831f03c2e5184b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Boss.BossBrain
+  movement: {fileID: 3884450912346290370}
+  attack: {fileID: 5970359887196884780}
+  patterns:
+  - {fileID: 11400000, guid: b69d9f0c3e75942b6981c46936234bc7, type: 2}
+  - {fileID: 11400000, guid: 15cde6ec514954ef380cfac39a23cea1, type: 2}
+  attackMoveSpeed: 4.5
+  recoverMoveSpeed: 1
+  preferredDistance: 5
+  stepAngle: 35
+  reverseChance: 0.3
+  reversePause: 0.4
+  edgeMargin: 0.9
+  recoverTime: 1.2
+  logStateChanges: 0
 --- !u!1 &8850769589401333633
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,8 +335,8 @@ Transform:
   m_GameObject: {fileID: 8850769589401333633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.35, z: 0}
-  m_LocalScale: {x: 2.75, y: 1.375, z: 1}
+  m_LocalPosition: {x: 0, y: -0.24499999, z: 0}
+  m_LocalScale: {x: 1.925, y: 0.9625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4445333754372885289}

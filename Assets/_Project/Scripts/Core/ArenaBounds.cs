@@ -10,6 +10,20 @@ namespace AntLion.Core
         [SerializeField] private float height = 9.9f;
         [SerializeField, Range(8, 128)] private int segments = 48;
 
+        // Pulls a point back inside the oval (shrunk by `margin`) if it lies outside; points already inside are unchanged.
+        public Vector2 ClampInside(Vector2 point, float margin)
+        {
+            float halfWidth = Mathf.Max(0.01f, width * 0.5f - margin);
+            float halfHeight = Mathf.Max(0.01f, height * 0.5f - margin);
+            Vector2 local = transform.InverseTransformPoint(point);
+
+            // How far out the point is, where 1 is exactly on the shrunk oval's edge.
+            float reach = Mathf.Sqrt((local.x * local.x) / (halfWidth * halfWidth) + (local.y * local.y) / (halfHeight * halfHeight));
+            if (reach > 1f) local /= reach;
+
+            return transform.TransformPoint(local);
+        }
+
         // Runs in the editor whenever a value changes in the Inspector.
         private void OnValidate()
         {
