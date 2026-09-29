@@ -1,14 +1,56 @@
-using System.Collections.Generic;
+using System.Collections;
 using AntLion.Boss.Patterns;
 using UnityEngine;
 
 namespace AntLion.Boss
 {
-    // Step 3: runs one hardcoded pattern.
-    // Step 4: runs whichever pattern in the list the PatternSelector picks. Keep the list swappable (phase 2 seam).
+    // Plays whichever AttackPattern it's told to. Makes no decisions.
     public class BossAttack : MonoBehaviour
     {
-        [SerializeField] private List<AttackPattern> patterns = new List<AttackPattern>();
-        [SerializeField] private PatternSelector selector = new PatternSelector();
+        public bool IsAttacking { get; private set; }   // brain polls this to know when a pattern is done
+
+        private AttackContext context;
+        private Coroutine running;
+
+        // BossController, once.
+        public void Init(AttackContext attackContext)
+        {
+            context = attackContext;
+        }
+
+        // Brain: start this pattern. Replaces any pattern still running, so only one plays at a time.
+        public void Run(AttackPattern pattern)
+        {
+            Stop();
+            if (pattern == null)
+            {
+                Debug.LogWarning("BossAttack.Run was given no pattern. Is the boss's pattern list empty?", this);
+                return;
+            }
+
+            IsAttacking = true;
+            running = StartCoroutine(Play(pattern));
+        }
+
+        // Brain: interrupt (death, stagger, phase change). Bullets already in the air keep flying.
+        public void Stop()
+        {
+            if (running != null) StopCoroutine(running);
+            running = null;
+            IsAttacking = false;
+        }
+
+        // Coroutines die with the GameObject; this keeps IsAttacking honest so the brain never waits forever.
+        private void OnDisable()
+        {
+            Stop();
+        }
+
+        private IEnumerator Play(AttackPattern pattern)
+        {
+            yield return pattern.Execute(context);
+            running = null;
+            IsAttacking = false;
+        }
     }
 }

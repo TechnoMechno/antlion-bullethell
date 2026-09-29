@@ -25,7 +25,8 @@ namespace AntLion.Projectiles
                 createFunc: CreateProjectile,
                 actionOnGet: p => p.gameObject.SetActive(true),
                 actionOnRelease: p => p.gameObject.SetActive(false),
-                actionOnDestroy: p => Destroy(p.gameObject),
+                // Unity clears every pool when Play mode ends, after the scene's objects are already destroyed.
+                actionOnDestroy: p => { if (p != null) Destroy(p.gameObject); },
                 collectionCheck: true, // in the editor, throws if the same projectile is returned twice
                 defaultCapacity: prewarmCount,
                 maxSize: prewarmCount * 2);
