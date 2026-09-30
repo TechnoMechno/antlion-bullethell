@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7799636865259917003}
   - component: {fileID: 9096534961635955551}
-  - component: {fileID: -5311722764773348220}
   - component: {fileID: 4876164035335547063}
   - component: {fileID: 2960091941804447723}
   - component: {fileID: 5736110521901783473}
@@ -54,22 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   movement: {fileID: 2960091941804447723}
-  shooter: {fileID: -5311722764773348220}
+  shooter: {fileID: 0}
   dash: {fileID: 8296898797859452378}
---- !u!114 &-5311722764773348220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4893384045870605467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4d18d144294841cf9db43c0753f3970, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  pool: {fileID: 0}
-  firePoint: {fileID: 5992616045111857526}
 --- !u!114 &4876164035335547063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 5
-  facingDirection: {x: 0, y: 0}
 --- !u!50 &5736110521901783473
 Rigidbody2D:
   serializedVersion: 5

@@ -465,6 +465,11 @@ Transform:
   - {fileID: 603258574}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &501687481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4893384045870605467, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
+  m_PrefabInstance: {fileID: 1929081002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &603258572
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +718,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba800121acf6b409e9d0a6c33aefc33b, type: 3}
+--- !u!4 &892809851 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5992616045111857526, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
+  m_PrefabInstance: {fileID: 1929081002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1462183131
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,10 +777,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -5311722764773348220, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
-      propertyPath: pool
-      value: 
-      objectReference: {fileID: 1462183133}
     - target: {fileID: 4893384045870605467, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -818,18 +824,35 @@ PrefabInstance:
     - target: {fileID: 9096534961635955551, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
       propertyPath: shooter
       value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -5311722764773348220, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
+      objectReference: {fileID: 1929081010}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4893384045870605467, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1929081010}
   m_SourcePrefab: {fileID: 100100000, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
 --- !u!4 &1929081003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7799636865259917003, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
   m_PrefabInstance: {fileID: 1929081002}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1929081010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501687481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d18d144294841cf9db43c0753f3970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Player.PlayerShooter
+  pool: {fileID: 1462183133}
+  firePoint: {fileID: 892809851}
+  fireInterval: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

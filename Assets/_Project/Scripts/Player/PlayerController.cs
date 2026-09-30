@@ -8,6 +8,8 @@ namespace AntLion.Player
     {
         private InputAction dashAction;
         private InputAction moveAction;
+        private InputAction shootAction;
+        private Camera mainCamera;
         [SerializeField] private PlayerMovement movement;
         [SerializeField] private PlayerShooter shooter;
         [SerializeField] private PlayerDash dash;
@@ -16,6 +18,9 @@ namespace AntLion.Player
         {
             moveAction = InputSystem.actions.FindAction("Move");
             dashAction = InputSystem.actions.FindAction("Dash");
+            shootAction = InputSystem.actions.FindAction("Attack");
+            mainCamera = Camera.main;//cache the main camera
+
         }
 
         // Read input every frame so no key press is missed
@@ -28,7 +33,15 @@ namespace AntLion.Player
             //Set up Dash Action
             if(dashAction.WasPressedThisFrame())
                 dash.Dash(moveInput);
-            
+
+            //Find the mouse position for the shooting
+            if(shootAction.IsPressed())
+            {
+                Vector2 mousePos = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
+                shooter.Fire(direction);
+            }
         }
+            
     }
 }
