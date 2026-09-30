@@ -8,9 +8,11 @@ namespace AntLion.UI
     {
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private InstructionsPanel instructions;
+        [SerializeField] private string arena = "Arena";
 
         public void Play()
         {
+            sceneLoader.Load(arena);
         }
 
         public void ShowInstructions()
@@ -19,6 +21,8 @@ namespace AntLion.UI
 
         public void Quit()
         {
+            Application.Quit();
+            Debug.Log("Game quit");
         }
     }
 }

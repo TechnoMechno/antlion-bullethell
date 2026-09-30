@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace AntLion.Core
 {
@@ -7,6 +8,14 @@ namespace AntLion.Core
     {
         public void Load(string sceneName)
         {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(sceneName);
+        }
+
+        [ContextMenu("load menu")]
+        public void testLoadMenu()
+        {
+            Load("MainMenu");
         }
     }
 }

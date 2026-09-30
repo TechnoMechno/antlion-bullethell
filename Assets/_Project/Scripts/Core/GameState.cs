@@ -4,6 +4,7 @@ namespace AntLion.Core
     {
         Playing,
         Win,
-        Lose
+        Lose,
+        Paused
     }
 }
