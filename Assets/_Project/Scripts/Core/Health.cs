@@ -16,7 +16,7 @@ namespace AntLion.Core
         public int Current { get; private set; }
         public bool IsDead { get; private set; }
 
-        // Damage is ignored while this is true. The dash and the shield power-up switch it on and off;
+        // Damage is ignored while this is true. The dasch and the shield power-up swith it on and off;
         // they own the timing, this component only enforces the rule.
         public bool IsInvulnerable { get; private set; }
 
@@ -52,5 +52,12 @@ namespace AntLion.Core
             Current = Mathf.Min(maxHealth, Current + amount);
             OnChanged?.Invoke(Current, maxHealth);
         }
+
+        [ContextMenu("kill")]
+        private void DebugKill()
+        {
+            TakeDamage(MaxHealth);
+        }
+
     }
 }
