@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5736110521901783473}
   - component: {fileID: 3904050028108633049}
   - component: {fileID: 8296898797859452378}
+  - component: {fileID: 6964437924851479184}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -53,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   movement: {fileID: 2960091941804447723}
-  shooter: {fileID: 0}
+  shooter: {fileID: 6964437924851479184}
   dash: {fileID: 8296898797859452378}
 --- !u!114 &4876164035335547063
 MonoBehaviour:
@@ -161,6 +162,21 @@ MonoBehaviour:
   dashSpeed: 10
   dashDuration: 0.15
   cooldown: 0.6
+--- !u!114 &6964437924851479184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893384045870605467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d18d144294841cf9db43c0753f3970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Player.PlayerShooter
+  pool: {fileID: 0}
+  firePoint: {fileID: 5992616045111857526}
+  fireInterval: 0.07
 --- !u!1 &6926852707445235499
 GameObject:
   m_ObjectHideFlags: 0
