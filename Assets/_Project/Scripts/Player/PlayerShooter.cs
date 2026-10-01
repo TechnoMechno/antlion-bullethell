@@ -8,7 +8,7 @@ namespace AntLion.Player
     {
         [SerializeField] private ProjectilePool pool;
         [SerializeField] private Transform firePoint;
-        [SerializeField] private float fireInterval = 0.07f;
+        [SerializeField] private float fireInterval = 0.05f;
         private float nextFireTime;
 
         public void Fire(Vector2 direction)

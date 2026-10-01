@@ -10,7 +10,7 @@ namespace AntLion.Projectiles
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private float speed = 10f;
-        [SerializeField] private int damage = 1;
+        [SerializeField] private int damage = 7;
         [SerializeField] private float lifetime = 3f;
         [Tooltip("Optional. Straight-line movement is used when this is empty.")]
         [SerializeField] private ProjectileMotion motion;
