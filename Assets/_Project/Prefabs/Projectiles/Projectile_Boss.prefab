@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8201316495969801960, guid: 0abc7259119ab4a8c89640bdec20bfd1, type: 3}
+      propertyPath: m_Color.b
+      value: 0.04750049
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201316495969801960, guid: 0abc7259119ab4a8c89640bdec20bfd1, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201316495969801960, guid: 0abc7259119ab4a8c89640bdec20bfd1, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9176650913493275020, guid: 0abc7259119ab4a8c89640bdec20bfd1, type: 3}
       propertyPath: m_Name
       value: Projectile_Boss
