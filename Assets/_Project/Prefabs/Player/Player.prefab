@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6929266fe0f0f4349920e1ccb09ef92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHealth: 10
+  maxHealth: 100
 --- !u!114 &2960091941804447723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   pool: {fileID: 0}
   firePoint: {fileID: 5992616045111857526}
   fireInterval: 0.2
+  stats: {fileID: 11400000, guid: 38fa091bdfc6d4678a5c3b2e3dcb594f, type: 2}
 --- !u!1 &6926852707445235499
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ namespace AntLion.Boss.Patterns
         [Tooltip("Total width of the fan in degrees. Ignored when there is only one bullet.")]
         [SerializeField] private float spreadAngle = 40f;
         [SerializeField] private float timeBetweenVolleys = 0.6f;
+        [SerializeField] private float bulletSpeed;
 
         public override IEnumerator Execute(AttackContext context)
         {
