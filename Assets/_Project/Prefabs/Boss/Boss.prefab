@@ -89,7 +89,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: eec2dd910f89148739050485bce0d592, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 7145001337436505674}
   - component: {fileID: 3884450912346290370}
   - component: {fileID: 1387553633828550836}
+  - component: {fileID: 66982272395750896}
   m_Layer: 11
   m_Name: Boss
   m_TagString: Untagged
@@ -309,6 +310,21 @@ MonoBehaviour:
   edgeMargin: 0.9
   recoverTime: 0.96
   logStateChanges: 0
+--- !u!114 &66982272395750896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255192250970716449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd982c6ab8cb94391b5f000e6ae010b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFlash
+  health: {fileID: 7145001337436505674}
+  visual: {fileID: 4513057548672326933}
+  flashDuration: 0.02
 --- !u!1 &8850769589401333633
 GameObject:
   m_ObjectHideFlags: 0

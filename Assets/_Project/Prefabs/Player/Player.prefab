@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3904050028108633049}
   - component: {fileID: 8296898797859452378}
   - component: {fileID: 6964437924851479184}
+  - component: {fileID: 4391374949087809707}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -178,6 +179,21 @@ MonoBehaviour:
   firePoint: {fileID: 5992616045111857526}
   fireInterval: 0.2
   stats: {fileID: 11400000, guid: 38fa091bdfc6d4678a5c3b2e3dcb594f, type: 2}
+--- !u!114 &4391374949087809707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893384045870605467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd982c6ab8cb94391b5f000e6ae010b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Core.HitFlash
+  health: {fileID: 4876164035335547063}
+  visual: {fileID: 949715870564080450}
+  flashDuration: 0.02
 --- !u!1 &6926852707445235499
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +283,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: eec2dd910f89148739050485bce0d592, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -291,7 +307,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8664697, g: 0.16353682, b: 0.990566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
