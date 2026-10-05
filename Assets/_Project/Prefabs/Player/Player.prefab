@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8296898797859452378}
   - component: {fileID: 6964437924851479184}
   - component: {fileID: 4391374949087809707}
+  - component: {fileID: 1569097176792517725}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -82,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9101fffb9a24d4e689ea19d8e3851f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 5
+  speed: 7
 --- !u!50 &5736110521901783473
 Rigidbody2D:
   serializedVersion: 5
@@ -160,9 +161,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AntLion.Player.PlayerDash
   movement: {fileID: 2960091941804447723}
   health: {fileID: 4876164035335547063}
-  dashSpeed: 10
-  dashDuration: 0.15
-  cooldown: 0.6
+  dashSpeed: 30
+  dashDuration: 0.07
+  cooldown: 0.2
 --- !u!114 &6964437924851479184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +194,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AntLion.Core.HitFlash
   health: {fileID: 4876164035335547063}
   visual: {fileID: 949715870564080450}
-  flashDuration: 0.02
+  flashDuration: 0.1
+--- !u!114 &1569097176792517725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893384045870605467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5446f1053faf7489d9f80590497c9453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Player.PlayerKnockback
+  hp: {fileID: 4876164035335547063}
+  movement: {fileID: 2960091941804447723}
+  body: {fileID: 5736110521901783473}
+  knockbackSpeed: 15
+  knockbackDuration: 0.05
 --- !u!1 &6926852707445235499
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ namespace AntLion.Core
 
         public event Action<int, int> OnChanged;
         public event Action OnDeath;
-        public event Action<int> OnDamaged;
+        public event Action<int, Vector2> OnDamaged;
 
         public int MaxHealth => maxHealth;
         public int Current { get; private set; }
@@ -33,11 +33,16 @@ namespace AntLion.Core
 
         public void TakeDamage(int amount)
         {
+            TakeDamage(amount, transform.position);
+        }
+
+        public void TakeDamage(int amount, Vector2 sourcePosition)
+        {
             if (amount <= 0 || IsDead || IsInvulnerable) return;
 
             Current = Mathf.Max(0, Current - amount);
             OnChanged?.Invoke(Current, maxHealth);
-            OnDamaged?.Invoke(amount);
+            OnDamaged?.Invoke(amount, sourcePosition);
 
             // IsDead guards against OnDeath firing twice, which would trigger two scene transitions.
             if (Current == 0)

@@ -81,8 +81,12 @@ namespace AntLion.Projectiles
 
             // Health sits on the same GameObject as the collider on every damageable entity.
             // A target that ignores the hit (invulnerable, already dead) still consumes the bullet.
-            if (other.TryGetComponent(out Health health)) health.TakeDamage(currentDamage);
+            if (other.TryGetComponent(out Health health)) health.TakeDamage(currentDamage, transform.position);
 
+            if (health.IsInvulnerable == true)
+            {
+                return;
+            }
             ReturnToPool();
         }
 

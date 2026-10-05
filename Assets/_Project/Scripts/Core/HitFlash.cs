@@ -15,7 +15,7 @@ namespace AntLion.Core
             originalColor = visual.color;
         }
 
-        private void HandleDamaged(int amount)
+        private void HandleDamaged(int amount, Vector2 srcPos)
         {
             StartCoroutine(Flash());
         }
