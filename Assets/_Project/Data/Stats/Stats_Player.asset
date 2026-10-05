@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32da575130b27443684979733fb3f7f6, type: 3}
   m_Name: Stats_Player
   m_EditorClassIdentifier: Assembly-CSharp::AntLion.Player.PlayerStats
+  bulletDamage: 10
+  bulletSpeed: 12

@@ -26,7 +26,7 @@ namespace AntLion.Player{
         public void Dash(Vector2 direction)
         {
             //Still Cooldownn
-            if(State != DashState.Ready) return;
+            if(State != DashState.Ready || movement.OverriddenDirection == true) return;
 
             //Find the dash direction
             dashDirection = direction.sqrMagnitude > 0.01f ? direction.normalized : movement.facingDirection;

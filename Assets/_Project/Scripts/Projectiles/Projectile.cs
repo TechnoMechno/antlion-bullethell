@@ -1,5 +1,5 @@
-using AntLion.Core;
 using UnityEngine;
+using AntLion.Core;
 
 namespace AntLion.Projectiles
 {
@@ -14,6 +14,9 @@ namespace AntLion.Projectiles
         [SerializeField] private float lifetime = 3f;
         [Tooltip("Optional. Straight-line movement is used when this is empty.")]
         [SerializeField] private ProjectileMotion motion;
+        
+        private int currentDamage;
+        private float currentSpeed;
 
         public float Speed => speed;
         public int Damage => damage;
@@ -38,12 +41,22 @@ namespace AntLion.Projectiles
 
         // Places, aims and arms the projectile. Its layer comes from the prefab variant, not the caller.
         public void Launch(Vector2 position, Vector2 direction)
-        {
+        {   
+            currentDamage = damage;
+            currentSpeed = speed;
             transform.position = position;
             body.position = position; // keep physics in step with the teleport, so it can't hit anything on the way
             this.direction = direction.normalized;
             age = 0f;
             returned = false;
+        }
+
+        public void Launch(Vector2 position, Vector2 direction, int launchDamage, float launchSpeed)
+        {
+            Launch(position, direction);
+            currentDamage = launchDamage;
+            currentSpeed = launchSpeed;
+
         }
 
         private void FixedUpdate()
@@ -58,8 +71,8 @@ namespace AntLion.Projectiles
             }
 
             body.linearVelocity = motion != null
-                ? motion.GetVelocity(direction, speed, age)
-                : direction * speed;
+                ? motion.GetVelocity(direction, currentSpeed, age)
+                : direction * currentSpeed;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -68,8 +81,12 @@ namespace AntLion.Projectiles
 
             // Health sits on the same GameObject as the collider on every damageable entity.
             // A target that ignores the hit (invulnerable, already dead) still consumes the bullet.
-            if (other.TryGetComponent(out Health health)) health.TakeDamage(damage);
+            if (other.TryGetComponent(out Health health)) health.TakeDamage(currentDamage, transform.position);
 
+            if (health.IsInvulnerable == true)
+            {
+                return;
+            }
             ReturnToPool();
         }
 
