@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 3884450912346290370}
   - component: {fileID: 1387553633828550836}
   - component: {fileID: 66982272395750896}
+  - component: {fileID: 1489297312601250821}
   m_Layer: 11
   m_Name: Boss
   m_TagString: Untagged
@@ -325,6 +326,20 @@ MonoBehaviour:
   health: {fileID: 7145001337436505674}
   visual: {fileID: 4513057548672326933}
   flashDuration: 0.05
+--- !u!114 &1489297312601250821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255192250970716449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03acbc732f8cc4cc683eef1a0cf0a75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Core.ContactDamage
+  body: {fileID: 5887203311201396894}
+  damage: 10
 --- !u!1 &8850769589401333633
 GameObject:
   m_ObjectHideFlags: 0
