@@ -711,9 +711,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1387553633828550836, guid: ba800121acf6b409e9d0a6c33aefc33b, type: 3}
+      propertyPath: patterns.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387553633828550836, guid: ba800121acf6b409e9d0a6c33aefc33b, type: 3}
       propertyPath: 'patterns.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: f1e55177334f3464b921048a1272dfa2, type: 2}
+    - target: {fileID: 1387553633828550836, guid: ba800121acf6b409e9d0a6c33aefc33b, type: 3}
+      propertyPath: 'patterns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d31c60bcd506ff94490a64b3d045c609, type: 2}
+    - target: {fileID: 1387553633828550836, guid: ba800121acf6b409e9d0a6c33aefc33b, type: 3}
+      propertyPath: 'patterns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 90bdca31419aa614a9b94d8116a33303, type: 2}
     - target: {fileID: 4445333754372885289, guid: ba800121acf6b409e9d0a6c33aefc33b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -834,6 +846,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6964437924851479184, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
+      propertyPath: pool
+      value: 
+      objectReference: {fileID: 1462183133}
     - target: {fileID: 7799636865259917003, guid: c95c5f6c2025b4494984252d6db8187c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -906,6 +922,7 @@ MonoBehaviour:
   pool: {fileID: 1462183133}
   firePoint: {fileID: 892809851}
   fireInterval: 0.1
+  stats: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

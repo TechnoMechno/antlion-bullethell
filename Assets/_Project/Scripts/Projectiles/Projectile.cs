@@ -83,7 +83,7 @@ namespace AntLion.Projectiles
             // A target that ignores the hit (invulnerable, already dead) still consumes the bullet.
             if (other.TryGetComponent(out Health health)) health.TakeDamage(currentDamage, transform.position);
 
-            if (health.IsInvulnerable == true)
+            if (health != null && health.IsInvulnerable == true)
             {
                 return;
             }

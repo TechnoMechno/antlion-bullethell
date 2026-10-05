@@ -300,7 +300,10 @@ MonoBehaviour:
   movement: {fileID: 3884450912346290370}
   attack: {fileID: 5970359887196884780}
   patterns:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: b69d9f0c3e75942b6981c46936234bc7, type: 2}
+  - {fileID: 11400000, guid: 15cde6ec514954ef380cfac39a23cea1, type: 2}
+  - {fileID: 11400000, guid: d31c60bcd506ff94490a64b3d045c609, type: 2}
+  - {fileID: 11400000, guid: f1e55177334f3464b921048a1272dfa2, type: 2}
   attackMoveSpeed: 4.5
   recoverMoveSpeed: 1
   preferredDistance: 5
