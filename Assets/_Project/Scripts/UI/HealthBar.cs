@@ -9,6 +9,8 @@ namespace AntLion.UI
     {
         [SerializeField] private Health health;
         [SerializeField] private Image fill;
+        [Tooltip("Optional. Shows \"current/max\" inside the bar.")]
+        [SerializeField] private PixelNumberText label;
 
         // Redraw on enable too, so a bar hidden while HP changed (e.g. HUD off during a pause) isn't stale.
         private void OnEnable()
@@ -31,6 +33,7 @@ namespace AntLion.UI
         private void Show(int current, int max)
         {
             fill.fillAmount = max > 0 ? (float)current / max : 0f;
+            if (label != null) label.SetText($"{current}/{max}");
         }
     }
 }

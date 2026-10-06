@@ -1,6 +1,6 @@
 using AntLion.Core;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace AntLion.UI
@@ -11,7 +11,9 @@ namespace AntLion.UI
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private GameStateManager gameStateManager;
         [SerializeField] private GameObject panel;
-        [SerializeField] private TMP_Text text;
+        [SerializeField] private Image title;
+        [SerializeField] private Sprite winTitle;
+        [SerializeField] private Sprite loseTitle;
         [SerializeField] private string menuScene = "MainMenu";
 
         private void HandleStateChanged(GameState state)
@@ -19,15 +21,7 @@ namespace AntLion.UI
             if (state == GameState.Win || state == GameState.Lose)
             {
                 panel.SetActive(true);
-                if (state == GameState.Win)
-                {
-                    text.text = "You Win!";
-                }
-                else
-                {
-                    text.text = "You Lose!";
-                }
-
+                title.sprite = state == GameState.Win ? winTitle : loseTitle;
             }
         }
 

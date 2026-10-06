@@ -119,5 +119,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7520666295715946612, guid: 0abc7259119ab4a8c89640bdec20bfd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2691333361713068689}
+    - targetCorrespondingSourceObject: {fileID: 7520666295715946612, guid: 0abc7259119ab4a8c89640bdec20bfd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3472030794162242833}
   m_SourcePrefab: {fileID: 100100000, guid: 0abc7259119ab4a8c89640bdec20bfd1, type: 3}
+--- !u!1 &7854519614253590889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7520666295715946612, guid: 0abc7259119ab4a8c89640bdec20bfd1, type: 3}
+  m_PrefabInstance: {fileID: 386779462530402589}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2691333361713068689
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854519614253590889}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c016f890ec31b4fca9d8c9ccf280b170, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3472030794162242833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854519614253590889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f79b3865bae4126809fd57ea15fad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntLion.Projectiles.ProjectileHitEffect
+  flightSprite: {fileID: 235216558321680079, guid: 95b2f19be92594b3981662556bbd3cf9, type: 3}
