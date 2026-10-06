@@ -15,5 +15,5 @@ MonoBehaviour:
   windup: 0.5
   shots: 72
   timeBetweenShots: 0.12
-  arms: 2
+  arms: 5
   degreesPerShot: 10

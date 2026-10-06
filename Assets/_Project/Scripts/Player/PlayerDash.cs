@@ -14,6 +14,7 @@ namespace AntLion.Player{
         [SerializeField] private float cooldown = 0.6f;
 
         public DashState State {get; private set;} = DashState.Ready;
+        public Vector2 DashDirection => dashDirection;//Read by PlayerAnimation to pick the dash clip
 
         private Rigidbody2D rb;
         private Vector2 dashDirection;

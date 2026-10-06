@@ -17,6 +17,7 @@ namespace AntLion.UI
 
         public void ShowInstructions()
         {
+            instructions.Show();
         }
 
         public void Quit()

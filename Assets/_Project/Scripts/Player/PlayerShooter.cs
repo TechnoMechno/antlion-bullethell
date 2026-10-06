@@ -14,6 +14,10 @@ namespace AntLion.Player
 
         private float nextFireTime;
 
+        //Last time the shoot button asked to fire (every frame it's held), even if the fire interval blocked the shot.
+        //Read by PlayerAnimation to tell if the player is shooting.
+        public float LastTriggerTime { get; private set; } = float.NegativeInfinity;
+
         public void SetDamageMultiplier(float multiplier)
         {
             damageMultiplier = multiplier;
@@ -21,6 +25,8 @@ namespace AntLion.Player
 
         public void Fire(Vector2 direction)
         {
+            LastTriggerTime = Time.time;
+
             //Check if the player can fire
             if (Time.time < nextFireTime) return;
             nextFireTime = Time.time + fireInterval;
