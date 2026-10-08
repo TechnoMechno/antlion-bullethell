@@ -26,6 +26,9 @@ namespace AntLion.Player
         // Read input every frame so no key press is missed
         private void Update()
         {
+            //Ignore input while the game is frozen (paused, won or lost)
+            if (Time.timeScale == 0f) return;
+
             //Set up Move Action
             Vector2 moveInput = moveAction.ReadValue<Vector2>();
             movement.SetDirection(moveInput);
